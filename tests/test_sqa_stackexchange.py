@@ -7,7 +7,8 @@ I do not need to do this because I have pyenv, and it already has the above
 import re
 from playwright.sync_api import Page, expect
 
-BASE_URL = "https://sqa.stackexchange.com"
+from common.common import BASE_URL
+
 
 def test_has_title(page: Page):
     page.goto(BASE_URL)
@@ -23,3 +24,5 @@ def test_get_started_link(page: Page):
 
     # Expects page to have a heading with the name of Newest Questions.
     expect(page.get_by_role("heading", name="Newest Questions")).to_be_visible()
+    page.screenshot(path="reports/screenshots/newest_questions.png")
+    #page.wait_for_timeout(5000)
