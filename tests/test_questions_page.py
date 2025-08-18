@@ -15,7 +15,7 @@ def test_questions_page_has_title(page: Page) -> None:
     navigate_to_me(page)
     page.screenshot(path="reports/screenshots/newest_questions.png")
 
-    # Expect title "to contain" a substring.
+    # Check page title
     expect(page).to_have_title(re.compile("Newest Questions"))
 
 def test_ask_question_button(page: Page) -> None:
@@ -24,6 +24,6 @@ def test_ask_question_button(page: Page) -> None:
     # Click the Ask Question button.
     page.get_by_role("link", name="Ask Question", exact=True).click()
 
-    # Expects page to have a heading with the name of Newest Questions.
-    expect(page.get_by_role("heading", name="Asking a good question")).to_be_visible()
-    #page.wait_for_timeout(5000)
+    # Check page "Ask a public question" text.
+    expect(page.get_by_text("Ask a public question")).to_be_visible()
+    #  page.wait_for_timeout(5000)

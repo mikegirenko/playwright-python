@@ -8,5 +8,5 @@ def test_home_page_has_title(page: Page) -> None:
     navigate_to_me(page)
     page.screenshot(path="reports/screenshots/home.png")
 
-    # Expect title "to contain" a substring.
+    # Check page title
     expect(page).to_have_title(re.compile("Software Quality Assurance & Testing"))

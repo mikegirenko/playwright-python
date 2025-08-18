@@ -12,3 +12,4 @@ Things I like about Playwright:
 9. codegen is nice and helps with code generation, can record assertions, and understand locators
 10. Because Playwright using Pytest plugin, when running test, it can record video and also can capture a screenshot
 11. "Playwright tests can be run on any CI provider", per Playwright. I have not tried it. I also not sure if I want to run slow UI test as a part of CI pipeline
+12. Tests can be debugged using PWDEBUG command, which will open browser window and Playwright Inspector
