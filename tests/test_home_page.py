@@ -4,7 +4,7 @@ from playwright.sync_api import Page, expect
 from pages.home_page import navigate_to_me
 
 
-def test_home_page_has_title(page: Page):
+def test_home_page_has_title(page: Page) -> None:
     navigate_to_me(page)
     page.screenshot(path="reports/screenshots/home.png")
 

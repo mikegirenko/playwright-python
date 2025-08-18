@@ -11,14 +11,14 @@ from common.common import BASE_URL
 from pages.questions_page import navigate_to_me
 
 
-def test_questions_page_has_title(page: Page):
+def test_questions_page_has_title(page: Page) -> None:
     navigate_to_me(page)
     page.screenshot(path="reports/screenshots/newest_questions.png")
 
     # Expect title "to contain" a substring.
     expect(page).to_have_title(re.compile("Newest Questions"))
 
-def test_ask_question_button(page: Page):
+def test_ask_question_button(page: Page) -> None:
     navigate_to_me(page)
 
     # Click the Ask Question button.
