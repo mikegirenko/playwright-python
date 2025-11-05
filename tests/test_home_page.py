@@ -12,9 +12,17 @@ logger = logging.getLogger(__name__)
 def test_home_page_has_title(page: Page) -> None:
     logger.info("Starting test to check Home page title")
     navigate_to_me(page)
-    page.screenshot(path="reports/screenshots/home.png")
+    #page.screenshot(path="reports/screenshots/home.png")
 
     # Check page title
     expect(page).to_have_title(re.compile("Software Quality Assurance & Testing"))
 
     logger.info("Ending test to check Home page title")
+
+    """
+    need to use BrowserContext
+    context = browser.new_context()
+    context.close()
+    browser.close()
+    then do the same for test_questions_page
+    """
