@@ -1,15 +1,18 @@
 import pytest
 import re
 import logging
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Playwright, expect
 
 from pages.questions_page import navigate_to_me
+from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
+def test_questions_page_has_title(playwright: Playwright) -> None:
+    browser_instance = get_browser_instance(playwright)
+    context = get_context(browser_instance)
+    page = get_page(context)
 
-@pytest.mark.all_tests
-def test_questions_page_has_title(page: Page) -> None:
     logger.info("Starting test to check Questions page title")
     navigate_to_me(page)
     page.screenshot(path="reports/screenshots/newest_questions.png")
@@ -19,9 +22,14 @@ def test_questions_page_has_title(page: Page) -> None:
 
     logger.info("Ending test to check Questions page title")
 
+    end_open_session(context, browser_instance)
 
-@pytest.mark.all_tests
-def test_ask_question_button(page: Page) -> None:
+
+def test_ask_question_button(playwright: Playwright) -> None:
+    browser_instance = get_browser_instance(playwright)
+    context = get_context(browser_instance)
+    page = get_page(context)
+
     logger.info("Starting test to check Ask Question button")
     navigate_to_me(page)
 
@@ -34,3 +42,4 @@ def test_ask_question_button(page: Page) -> None:
 
     logger.info("Ending test to check Questions page title")
 
+    end_open_session(context, browser_instance)

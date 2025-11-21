@@ -1,28 +1,25 @@
 import pytest
 import re
 import logging
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Playwright, expect
 
 from pages.home_page import navigate_to_me
+from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
+def test_home_page_has_title(playwright: Playwright) -> None:
+    browser_instance = get_browser_instance(playwright)
+    context = get_context(browser_instance)
+    page = get_page(context)
 
-@pytest.mark.all_tests
-def test_home_page_has_title(page: Page) -> None:
     logger.info("Starting test to check Home page title")
     navigate_to_me(page)
-    #page.screenshot(path="reports/screenshots/home.png")
 
     # Check page title
     expect(page).to_have_title(re.compile("Software Quality Assurance & Testing"))
 
     logger.info("Ending test to check Home page title")
 
-    """
-    need to use BrowserContext
-    context = browser.new_context()
-    context.close()
-    browser.close()
-    then do the same for test_questions_page
-    """
+    # Stop tracing, close browser instance, close context
+    end_open_session(context, browser_instance)

@@ -1,23 +1,39 @@
-from playwright.sync_api import Page
+import logging
+import pytest
+from playwright.sync_api import Page, expect, BrowserContext, Locator, Playwright
 """
-Playwright specific functions:
-start_session()
-navigate_to_page()
+Playwright specific functions
 """
 
-def navigate_to_page(page: Page, page_url):
-    page.goto(page_url)
+logger = logging.getLogger(__name__)
 
+browser = "chromium"
+headless = False
 
-# def navigate_to_page(user: BrowserContext, page_object: types.ModuleType) -> Page:
-#     """Navigate to the page represented by the page object passed in."""
-#
-#     if not hasattr(page_object, "navigate_to_me") or not hasattr(page_object, "loaded_successfully"):
-#         raise RuntimeError(f"The page object {page_object} needs both navigate_to_me and loaded_successfully")
-#
-#     # Start with this user's most recent page
-#     page = user.pages[0]
-#
-#     go_to_page_with_retries(page, page_object)
-#
-#     return page
+def get_browser_instance(playwright: Playwright) -> BrowserContext:
+
+    if browser == "chromium":
+        browser_brand = playwright.chromium
+    if browser == "firefox":
+        browser_brand = playwright.firefox
+    if browser == "webkit":
+        browser_brand = playwright.webkit
+    browser_instance = browser_brand.launch(headless=headless)
+
+    return browser_instance
+
+def get_context(browser_instance) -> BrowserContext:
+    context = browser_instance.new_context()
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
+
+    return context
+
+def get_page(context) -> Page:
+    page = context.new_page()
+
+    return page
+
+def end_open_session(open_context, open_browser_instance) -> None:
+    open_context.tracing.stop(path="reports/trace/trace.zip")
+    open_context.close()
+    open_browser_instance.close()
