@@ -20,6 +20,9 @@ def test_questions_page(playwright: Playwright) -> None:
 
     # Check page has title
     expect(page).to_have_title(re.compile("Newest Questions"))
+    # Check questions count exists
+    # TODO cannot have 11,659 hardcoded because this number will change
+    expect(page.locator("#mainbar")).to_contain_text(re.compile("11,659 questions"))
 
     logger.info("Ending Questions page test")
 
