@@ -1,17 +1,18 @@
 import logging
 import pytest
 from playwright.sync_api import Page, expect, BrowserContext, Locator, Playwright
+
+from test_data.hard_coded.hardcoded import *
+
 """
 Playwright specific functions
 """
 
 logger = logging.getLogger(__name__)
 
-browser = "chromium"
-headless = False
-
 def get_browser_instance(playwright: Playwright) -> BrowserContext:
-
+    browser = BROWSER
+    headless = HEADLESS
     if browser == "chromium":
         browser_brand = playwright.chromium
     if browser == "firefox":

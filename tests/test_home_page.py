@@ -8,18 +8,18 @@ from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
-def test_home_page_has_title(playwright: Playwright) -> None:
+def test_home_page(playwright: Playwright) -> None:
     browser_instance = get_browser_instance(playwright)
     context = get_context(browser_instance)
     page = get_page(context)
 
-    logger.info("Starting test to check Home page title")
+    logger.info("Starting test to check Home page")
     navigate_to_me(page)
 
-    # Check page title
+    # Check page has title
     expect(page).to_have_title(re.compile("Software Quality Assurance & Testing"))
 
-    logger.info("Ending test to check Home page title")
+    logger.info("Ending test to check Home page")
 
     # Stop tracing, close browser instance, close context
     end_open_session(context, browser_instance)
