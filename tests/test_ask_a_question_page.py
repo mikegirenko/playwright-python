@@ -13,7 +13,7 @@ def test_ask_question_button(playwright: Playwright) -> None:
     context = get_context(browser_instance)
     page = get_page(context)
 
-    logger.info("Starting test to check Ask Question button")
+    logger.info("Starting Ask Question page test")
     navigate_to_me(page)
 
     # Click the Ask Question button.
@@ -23,6 +23,6 @@ def test_ask_question_button(playwright: Playwright) -> None:
     expect(page.get_by_text("Ask a public question")).to_be_visible()
     #  page.wait_for_timeout(5000)
 
-    logger.info("Ending test to check Questions page title")
+    logger.info("Ending Ask Question page test")
 
     end_open_session(context, browser_instance)

@@ -13,13 +13,13 @@ def test_home_page(playwright: Playwright) -> None:
     context = get_context(browser_instance)
     page = get_page(context)
 
-    logger.info("Starting test to check Home page")
+    logger.info("Starting Home page test")
     navigate_to_me(page)
 
     # Check page has title
     expect(page).to_have_title(re.compile("Software Quality Assurance & Testing"))
 
-    logger.info("Ending test to check Home page")
+    logger.info("Ending Home page test")
 
     # Stop tracing, close browser instance, close context
     end_open_session(context, browser_instance)

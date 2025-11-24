@@ -1,0 +1,8 @@
+# Reports
+reports/
+/reports/xml
+/reports/allure
+/reports/html
+
+# Playwright stuff
+traces/

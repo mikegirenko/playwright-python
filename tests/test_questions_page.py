@@ -13,13 +13,13 @@ def test_questions_page(playwright: Playwright) -> None:
     context = get_context(browser_instance)
     page = get_page(context)
 
-    logger.info("Starting test to check Questions page")
+    logger.info("Starting Questions page test")
     navigate_to_me(page)
     page.screenshot(path="reports/screenshots/newest_questions.png")
 
     # Check page has title
     expect(page).to_have_title(re.compile("Newest Questions"))
 
-    logger.info("Ending test to check Questions page title")
+    logger.info("Ending Questions page test")
 
     end_open_session(context, browser_instance)
