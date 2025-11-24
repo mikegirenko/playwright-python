@@ -3,11 +3,12 @@ import re
 import logging
 from playwright.sync_api import Playwright, expect
 
-from pages.questions_page import navigate_to_me
+from pages.questions_page import *
 from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
+@pytest.mark.all_tests
 def test_questions_page(playwright: Playwright) -> None:
     browser_instance = get_browser_instance(playwright)
     context = get_context(browser_instance)

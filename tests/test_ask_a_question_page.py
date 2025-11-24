@@ -3,26 +3,24 @@ import re
 import logging
 from playwright.sync_api import Playwright, expect
 
-from pages.questions_page import navigate_to_me
+from pages.ask_a_question_page import *
 from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
+@pytest.mark.all_tests
 def test_ask_question_button(playwright: Playwright) -> None:
     browser_instance = get_browser_instance(playwright)
     context = get_context(browser_instance)
     page = get_page(context)
 
-    logger.info("Starting Ask Question page test")
+    logger.info("Starting Ask a Question page test")
     navigate_to_me(page)
 
-    # Click the Ask Question button.
-    page.get_by_role("link", name="Ask Question", exact=True).click()
+    # Check page "Asking a good question" text.
+    expect(page.get_by_role("heading", name="Asking a good question")).to_be_visible()
 
-    # Check page "Ask a public question" text.
-    expect(page.get_by_text("Ask a public question")).to_be_visible()
-    #  page.wait_for_timeout(5000)
+    logger.info("Ending Ask a Question page test")
 
-    logger.info("Ending Ask Question page test")
-
+    # Stop tracing, close browser instance, close context
     end_open_session(context, browser_instance)
