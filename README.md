@@ -4,7 +4,10 @@ Things I like about Playwright:
 1. Can run tests on many browsers, OS, headed and headless, with mobile emulation
 2. It works great with pytest
 3. Built-in wait before taking an action against UI, and it actually works. No more custom build dynamic waits!
-4. Built-it wait before performing an assertion
+4. Built-it wait before performing an assertion. MG 12-24-2025: Built-in wait is good, but not perfect. I have one test, 
+   which has ine assertion, which fails randomly. Test can run 40 times in a loop without failure, then fail. It is not 
+   related to unstable environment, not related to test data, not related to previous action triggering UI change. I was 
+   able to solve it by adding additional "expect" line before this assertion, but it feels strange
 5. Good amount of built-in locators
 6. Good amount of auto-retrying assertions that remove flakines
 7. Good list of basic actions (click, hover, fill)
