@@ -10,3 +10,6 @@ def navigate_to_me(page: Page) -> None:
 
 def loaded_successfully(page: Page) -> Locator:
     return page.get_by_text("Newest Questions")
+
+def questions_count(page: Page) -> Locator:
+    return page.locator('.fs-body3').filter(has_text="questions")
