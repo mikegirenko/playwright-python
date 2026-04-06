@@ -16,10 +16,12 @@ def test_questions_page(playwright: Playwright) -> None:
 
     logger.info("Starting Questions page test")
     navigate_to_me(page)
+
+    # The below takes screenshot of this page, keep it, but will need work (timestamp...)
     page.screenshot(path="reports/screenshots/newest_questions.png")
 
     # Check page has title
-    expect(page).to_have_title(re.compile("Newest Questions"))
+    expect(page_title(page)).to_be_visible()
 
     # Check questions count is not null
     questions_count_with_text = questions_count(page).inner_text().split(' ')
