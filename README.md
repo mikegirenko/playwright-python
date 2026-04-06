@@ -4,7 +4,9 @@ Things I like about Playwright:
 1. Can run tests on many browsers, OS, headed and headless, with mobile emulation
 2. It works great with pytest
 3. Built-in wait before taking an action against UI, and it actually works. No more custom build dynamic waits! MG 
-   03-12-2026: I learned that this is not entirely true, sometimes you need an assertion before click
+   03-12-2026: I learned that this is not entirely true, sometimes you need an assertion before click.
+   MG 04-06-2026: If UI element is being added dynamically (e.g., after an API call), you shouldn't just click(). You 
+   should use an assertion to ensure the element has actually rendered and finished its animations. 
 4. Built-it wait before performing an assertion. MG 12-24-2025: Built-in wait is good, but not perfect. I have one test, 
    which has ine assertion, which fails randomly. Test can run 40 times in a loop without failure, then fail. It is not 
    related to unstable environment, not related to test data, not related to previous action triggering UI change. I was 
