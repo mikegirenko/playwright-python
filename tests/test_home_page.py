@@ -1,3 +1,5 @@
+from logging import NullHandler
+
 import pytest
 import re
 import logging
@@ -18,7 +20,13 @@ def test_home_page(playwright: Playwright) -> None:
     navigate_to_me(page)
 
     # Check page has title
-    expect(page).to_have_title(re.compile("Software Quality Assurance & Testing"))
+    expect(page_title(page)).to_be_visible()
+
+    # Confirm Explore our questions section exists and populated
+    expect(explore_our_questions(page)).to_be_visible()
+
+    # Confirm Explore our questions table is not blank
+    assert len(explore_our_questions_table(page).inner_text()) > 0
 
     logger.info("Ending Home page test")
 
