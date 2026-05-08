@@ -25,13 +25,16 @@ def test_home_page(playwright: Playwright) -> None:
     # Confirm Explore our questions section exists and populated
     expect(explore_our_questions(page)).to_be_visible()
 
-    # Confirm Explore our questions table is not blank
-    assert len(explore_our_questions_table(page).inner_text()) > 0
+    # Confirm Explore our questions table is not blank (has at least one non-whitespace character)
+    expect(explore_our_questions_table(page)).to_contain_text(re.compile(r"\S"))
+    expect(sidebar(page)).to_contain_text(re.compile(r"\S"))
+
+    # Confirm Hot Network Questions section exists and populated
+    expect(hot_network_questions(page)).to_be_visible()
 
     logger.info("Ending Home page test")
 
     # Stop tracing, close browser instance, close context
     end_open_session(context, browser_instance)
 
-#  playwright codegen https://sqa.stackexchange.com/
 #  pytest -m all_tests

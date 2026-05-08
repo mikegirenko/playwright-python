@@ -24,7 +24,7 @@ def get_browser_instance(playwright: Playwright) -> BrowserContext:
     return browser_instance
 
 def get_context(browser_instance) -> BrowserContext:
-    context = browser_instance.new_context()
+    context = browser_instance.new_context(record_har_path="reports/har/har.har")
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
 
     return context

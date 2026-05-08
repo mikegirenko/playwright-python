@@ -17,3 +17,9 @@ def explore_our_questions(page: Page) -> Locator:
 
 def explore_our_questions_table(page: Page) -> Locator:
     return page.locator("#mainbar")
+
+def hot_network_questions(page: Page) -> Locator:
+    return page.get_by_role("link", name="Hot Network Questions")
+
+def sidebar(page: Page) -> Locator:
+    return page.locator("#sidebar")
