@@ -8,6 +8,7 @@ from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
+
 @pytest.mark.all_tests
 def test_questions_page(playwright: Playwright) -> None:
     browser_instance = get_browser_instance(playwright)
@@ -24,7 +25,7 @@ def test_questions_page(playwright: Playwright) -> None:
     expect(page_title(page)).to_be_visible()
 
     # Check questions count is not null
-    questions_count_with_text = questions_count(page).inner_text().split(' ')
+    questions_count_with_text = questions_count(page).inner_text().split(" ")
     numbers_only = questions_count_with_text[0]
 
     assert numbers_only is not None

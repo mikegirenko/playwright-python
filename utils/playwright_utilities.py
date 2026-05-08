@@ -10,6 +10,7 @@ Playwright specific functions
 
 logger = logging.getLogger(__name__)
 
+
 def get_browser_instance(playwright: Playwright) -> BrowserContext:
     browser = BROWSER
     headless = HEADLESS
@@ -23,16 +24,19 @@ def get_browser_instance(playwright: Playwright) -> BrowserContext:
 
     return browser_instance
 
+
 def get_context(browser_instance) -> BrowserContext:
     context = browser_instance.new_context(record_har_path="reports/har/har.har")
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
 
     return context
 
+
 def get_page(context) -> Page:
     page = context.new_page()
 
     return page
+
 
 def end_open_session(open_context, open_browser_instance) -> None:
     open_context.tracing.stop(path="reports/trace/trace.zip")

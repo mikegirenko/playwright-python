@@ -10,6 +10,7 @@ from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
+
 @pytest.mark.all_tests
 def test_home_page(playwright: Playwright) -> None:
     browser_instance = get_browser_instance(playwright)
@@ -36,5 +37,6 @@ def test_home_page(playwright: Playwright) -> None:
 
     # Stop tracing, close browser instance, close context
     end_open_session(context, browser_instance)
+
 
 #  pytest -m all_tests

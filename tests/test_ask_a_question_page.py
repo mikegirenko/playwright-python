@@ -8,6 +8,7 @@ from utils.playwright_utilities import *
 
 logger = logging.getLogger(__name__)
 
+
 @pytest.mark.all_tests
 def test_ask_question_button(playwright: Playwright) -> None:
     browser_instance = get_browser_instance(playwright)

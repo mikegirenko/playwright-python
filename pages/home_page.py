@@ -5,21 +5,29 @@ from namespace_urls.namespace_urls import BASE_URL
 
 page_url = BASE_URL
 
+
 def navigate_to_me(page: Page) -> None:
     page.goto(BASE_URL)
-    expect(page.get_by_role("link", name="Software Quality Assurance &").first).to_be_visible()
+    expect(
+        page.get_by_role("link", name="Software Quality Assurance &").first
+    ).to_be_visible()
+
 
 def page_title(page: Page) -> Locator:
     return page.get_by_role("link", name="Software Quality Assurance &").first
 
+
 def explore_our_questions(page: Page) -> Locator:
     return page.get_by_role("heading", name="Explore our questions")
+
 
 def explore_our_questions_table(page: Page) -> Locator:
     return page.locator("#mainbar")
 
+
 def hot_network_questions(page: Page) -> Locator:
     return page.get_by_role("link", name="Hot Network Questions")
+
 
 def sidebar(page: Page) -> Locator:
     return page.locator("#sidebar")

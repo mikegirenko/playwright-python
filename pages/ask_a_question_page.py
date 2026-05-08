@@ -5,6 +5,7 @@ from namespace_urls.namespace_urls import BASE_URL
 
 page_url = BASE_URL + "/questions"
 
+
 def navigate_to_me(page: Page) -> None:
     """Accessing this page by clicking on the Ask Question button"""
     page.goto(page_url)
